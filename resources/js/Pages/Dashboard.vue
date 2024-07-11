@@ -1,9 +1,10 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AdminLayout.vue';
-import { Head } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 import "leaflet/dist/leaflet.css";
 import * as L from 'leaflet';
+import {  } from "module";
+import AdminLayout from "@/Layouts/AdminLayout.vue";
+
 
 import { Chart as ChartJS, Title, Tooltip, Legend, CategoryScale, LinearScale, BarController, BarElement } from 'chart.js';
 
@@ -178,14 +179,59 @@ new ChartJS(ctx3, {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+<AdminLayout>
+  <div class=" flex flex-col">
+    <div class="flex flex-1">
+      <div class="flex-3 border m-2 p-4">
+        <!-- Contenido del primer elemento -->
+        <span style="display: flex; align-items: center;">
+                <span style="margin-right: 8px;">Plataforma</span>
+                <i class="fas fa-desktop"></i>
+        </span>
+      </div>
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Dashboard</h2>
-        </template>
 
-        <div class="flex flex-1">
+      <div class="flex-2 border m-2 p-4">
+    <!-- Contenido del primer elemento -->
+    <span style="display: flex; align-items: center;">
+                    <span style="margin-right: 8px;">Plataforma</span>
+                    <i class="fas fa-store"></i>
+            </span>
+          </div>
+
+ <!-- Contenido del primer elemento -->
+ <div class="max-w-md mx-auto bg-secondary p-6 ">
+  <div class="flex space-x-4 mb-4">
+      <input type="date" id="fechaInicio" class="border-gray-300 border p-2 rounded-md flex-1">
+      <input type="date" id="fechaFin" class="border-gray-300 border p-2 rounded-md flex-1">
+    </div>
+    <div class="flex space-x-4">
+      <button id="btnFiltrar" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Filtrar</button>
+      <button id="btnLimpiar" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-md">Limpiar</button>
+    </div>    
+      </div> 
+      <div class="flex justify-content-center">
+          <select class="flex top-0 left-0 m-2 p-2 bg-white border rounded">
+            <!-- Aquí van las opciones del select -->
+            <option value="opcion1">Enero</option>
+            <option value="opcion2">Febrero 2</option>
+            <option value="opcion3">Marzo 3</option>
+            <option value="opcion1">Abril 1</option>
+            <option value="opcion2">Mayo 2</option>
+            <option value="opcion3">Junio 3</option>
+            <option value="opcion1">Julio 1</option>
+            <option value="opcion2">Agosto 2</option>
+            <option value="opcion3">Septiembre 3</option>
+            <option value="opcion1">Octubre 1</option>
+            <option value="opcion2">Noviembre 2</option>
+            <option value="opcion3">Diciembre 3</option>
+          </select>
+        </div>
+
+    </div>
+    
+    
+    <div class="flex flex-1">
       <!--  -->
           <div class="flex-1 border m-2 p-4">
             <!--  -->
@@ -215,7 +261,7 @@ new ChartJS(ctx3, {
         <canvas ref="myChart3"></canvas>
       </div>
     </div>
- 
+  </div>
+</AdminLayout>
 
-    </AuthenticatedLayout>
 </template>

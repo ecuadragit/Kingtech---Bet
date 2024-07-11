@@ -17,8 +17,8 @@
   
   <script setup>
 
-    import Aside from '../components/Aside.vue';
-    import Header from '../components/Header.vue';
+    import Aside from '@/components/Aside/AsideAdmin.vue';
+    import Header from '@/components/Header.vue';
 
     import { usePermission } from "@/composables/permissions";
 

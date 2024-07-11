@@ -176,7 +176,7 @@ Route::delete('/platforms/{id}', [PlatformController::class, 'destroy'])->name('
 
          Route::get('/supadmin', [KingController::class, 'index'])->name('king.index');
          Route::get('/soporte', [SupportController::class, 'index'])->name('soporte.index');
-         Route::get('/contabilidad', [ContabilidadController::class, 'index'])->name('contabilidad.index');
+      //   Route::get('/contabilidad', [ContabilidadController::class, 'index'])->name('contabilidad.index');
          Route::get('/dash', [DashboardController::class, 'index'])->name('reportes.index');
          Route::get('/atc', [AtcController::class, 'index'])->name('atc.index');
 
@@ -220,10 +220,32 @@ Route::delete('/users/{user}/roles/{role}', RemoveRoleFromUserController::class)
 /****************************************************************************************************************/
 /****************************************************************************************************************/
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+
+    Route::middleware(RoleMiddleware::class . ':admin')->group(function () {
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    });
+
+    Route::middleware(RoleMiddleware::class . ':atencion')->group(function () {
+        Route::get('/atc', [AtcController::class, 'index'])->name('atc.index');
+    });
+
+    Route::middleware(RoleMiddleware::class . ':contabilidad')->group(function () {
+        Route::get('/contabilidad', [ContabilidadController::class, 'index'])->name('contabilidad.index');
+    });
+
+    Route::middleware(RoleMiddleware::class . ':soporte')->group(function () {
+        Route::get('/soporte', [SoporteController::class, 'index'])->name('soporte.index');
+    });
+
+});
 /****************************************************************************************************************/
 /****************************************************************************************************************/
 /****************************************************************************************************************/
@@ -242,15 +264,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 });
 
-// Route::middleware(['auth', 'role:atc'])->group(function () {
-     Route::get('/atc', [AtcController::class, 'index'])->name('atc.index');
-// });
-// Route::middleware(['auth', 'role:contabilidad'])->group(function () {
-     Route::get('/contabilidad', [ContabilidadController::class, 'index'])->name('contabilidad.index');
-// });
-// Route::middleware(['auth', 'role:soporte'])->group(function () {
-     Route::get('/soporte', [SoporteController::class, 'index'])->name('soporte.index');
-// });
 
 /****************************************************************************************************************/
 /****************************************************************************************************************/
