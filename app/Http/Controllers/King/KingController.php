@@ -51,27 +51,27 @@ class KingController extends Controller
             $transactiondetail= Transactiondetail::all();
             $utility= Utility::all();
 
-            // Agrupar todos los datos en un array asociativo
-            // $datos = [
-            // 'clientes' => $clientes,
-            // 'personas' => $personas,
-            // 'locales' => $locales,
-            // 'locationlocal' => $locationlocal,
-            // 'platforms' => $platforms,
-            // 'platformsedes' => $platformsede,
-            // 'transacciones' => $transacciones,
-            // 'detallesTransaccion' => $transactiondetail,
-            // 'utilities' => $utility,
-            // ];
+          //  Agrupar todos los datos en un array asociativo
+            $datos = [
+            'clientes' => $clientes,
+            'personas' => $personas,
+            'locales' => $locales,
+            'locationlocal' => $locationlocal,
+            'platforms' => $platforms,
+            'platformsedes' => $platformsede,
+            'transacciones' => $transacciones,
+            'detallesTransaccion' => $transactiondetail,
+            'utilities' => $utility,
+            ];
 
 // Devolver los datos como respuesta JSON
 //return response()->json($datos);
 
 
         return Inertia::render('Admin/Modules/Administracion', [
-            'locales' => StoreResource::collection($locales),
             'clientes' => ClienteResource::collection($clientes),
             'personas' => PersonResource::collection($personas),
+            'locales' => StoreResource::collection($locales),
             'locationlocal' => LocallocationResource::collection($locationlocal),
             'platform' => PlatformResource::collection($platforms),
             'platformsede' => PlatformsedeResource::collection($platformsede),

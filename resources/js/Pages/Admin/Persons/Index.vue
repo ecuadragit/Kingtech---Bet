@@ -2,7 +2,7 @@
 
     import axios from 'axios';
     import { ref, onMounted, onBeforeMount  } from 'vue';
-    import {confirmation,show_alert} from '../../../utils/functions';
+    import {confirmation,show_alert,sendRequest} from '../../../utils/functions';
     import Swal from 'sweetalert2';
 /**********************************************************/
 /**********************************************************/
@@ -42,7 +42,7 @@
     const showModalEdit = ref(false);          // Variable para controlar la visibilidad del modal
     const modalTitleEdit = ref('');            // Variable para almacenar el título del modal
     const filaSeleccionada = ref(false);
-
+    const modalTitleUpload= ref(''); 
     const selectedDate = ref(new Date());
      const startDate = ref(new Date());
      const endDate = ref(new Date());
@@ -67,7 +67,7 @@
 
     onBeforeMount(() => {
         personas.value = props.datos;
-        console.log(personas);
+        console.log(personas.value);
     });
 
 /**************************************************************************************************************** */
@@ -76,6 +76,7 @@
         id:'',
         fecha:'',
         departamento:'',
+        codigo:'',
         provincia:'',
         distrito:'',
         direccion:'',
@@ -169,6 +170,8 @@ const openModal = (title) =>
 {    
     form.fecha='',
     form.departamento='',
+    form.codigo_cliente='',
+    form.codigo_sede='',
     form.provincia='',
     form.distrito='',
     form.direccion='',
@@ -196,20 +199,17 @@ const openModalEdit = (title) => {
         return;
     }
         
-    formEdit.value.fecha=selectedRowsData.fecha
-    formEdit.value.dni=selectedRowsData.dni
-    formEdit.value.medio_de_contacto=selectedRowsData.medio_de_contacto
-    formEdit.value.medio_de_respuesta=selectedRowsData.medio_de_respuesta
-    formEdit.value.como_llego_a_la_marca=selectedRowsData.como_llego_a_la_marca
-    formEdit.value.tipo_negocio=selectedRowsData.tipo_negocio
-    formEdit.value.estado=selectedRowsData.estado
-    formEdit.value.respuesta_asesor=selectedRowsData.respuesta_asesor
-    formEdit.value.primer_contacto=selectedRowsData.primer_contacto
-    formEdit.value.segundo_contacto=selectedRowsData.segundo_contacto
-    formEdit.value.tercer_contacto=selectedRowsData.tercer_contacto
-    formEdit.value.contacto=selectedRowsData.contacto
-    formEdit.value.realizo_la_venta=selectedRowsData.realizo_la_venta
-    formEdit.value.futuro_socio=selectedRowsData.futuro_socio
+    formEdit.value.fecha=selectedRowsData.fecha,
+    formEdit.departamento=selectedRowsData.fecha,
+    formEdit.codigo_cliente=selectedRowsData.codigo_cliente,
+    formEdit.codigo_sede=selectedRowsData.codigo_sede,
+    formEdit.provincia=selectedRowsData.provincia,
+    formEdit.distrito=selectedRowsData.distrito,
+    formEdit.direccion=selectedRowsData.direccion,
+    formEdit.celular=selectedRowsData.celular,
+    formEdit.ruc=selectedRowsData.ruc,
+    formEdit.razon_social=selectedRowsData.razon_social,
+    formEdit.correo=selectedRowsData.correo,
 
     console.log(formEdit);
     modalTitleEdit.value = title;
@@ -258,7 +258,7 @@ const update = () => {
         formEdit.value.futuro_socio=selectedRowData.futuro_socio
         
         console.log(formEdit);
-        //  sendRequest('PUT',formEdit.value,('http://localhost:8000/api/v1/client/'+id),'');
+          sendRequest('PUT',formEdit.value,('http://localhost:8000/persons'+id),'');
 
     } else {
         // Si no se ha seleccionado ninguna fila, mostramos un mensaje de advertencia o manejo de la situación
@@ -268,23 +268,22 @@ const update = () => {
 };
 /**************************************************************************************************************** */
 const save = () => {
-
     console.log(form);
-    // sendRequest('POST',form.value,'http://localhost:8000/api/v1/create','listbet');          
-    form.value.fecha
-    form.value.dni
-    form.value.medio_de_contacto
-    form.value.medio_de_respuesta
-    form.value.como_llego_a_la_marca
-    form.value.tipo_negocio
-    form.value.estado
-    form.value.respuesta_asesor
-    form.value.primer_contacto
-    form.value.segundo_contacto
-    form.value.tercer_contacto
-    form.value.contacto
-    form.value.realizo_la_venta
-    form.value.futuro_socio        
+     sendRequest('POST',form.value,'http://localhost:8000/persons','persons');          
+    form.value.fecha = ''
+    form.value.dni= ''
+    form.value.medio_de_contacto= ''
+    form.value.medio_de_respuesta= ''
+    form.value.como_llego_a_la_marca= ''
+    form.value.tipo_negocio= ''
+    form.value.estado= ''
+    form.value.respuesta_asesor= ''
+    form.value.primer_contacto= ''
+    form.value.segundo_contacto= ''
+    form.value.tercer_contacto= ''
+    form.value.contacto= ''
+    form.value.realizo_la_venta= ''
+    form.value.futuro_socio    = ''    
     showModal.value = false;
 
 }
@@ -437,6 +436,16 @@ const save = () => {
                             <p class="text-sm text-gray-500 mt-1">Ingrese departamento.</p>
                         </div>
                         <div class="mb-4">
+                            <label for="departamento" class="block mb-1">CODIGO CLIENTE</label>
+                            <input type="text" id="codigo_cliente" class="form-input w-full" v-model="formEdit.codigo_cliente">
+                            <p class="text-sm text-gray-500 mt-1">Ingrese departamento.</p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="departamento" class="block mb-1">CODIGO SEDE</label>
+                            <input type="text" id="codigo_sede" class="form-input w-full" v-model="formEdit.codigo_sede">
+                            <p class="text-sm text-gray-500 mt-1">Ingrese departamento.</p>
+                        </div>
+                        <div class="mb-4">
                             <label for="provincia" class="block mb-1">PROVINCIA</label>
                             <input type="text" id="provincia" class="form-input w-full" v-model="formEdit.provincia">
                             <p class="text-sm text-gray-500 mt-1">Ingrese provincia.</p>
@@ -517,6 +526,16 @@ const save = () => {
                         <div class="mb-4">
                             <label for="departamento" class="block mb-1">DEPARTAMENTO</label>
                             <input type="text" id="departamento" class="form-input w-full" v-model="form.departamento">
+                            <p class="text-sm text-gray-500 mt-1">Ingrese departamento.</p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="departamento" class="block mb-1">CODIGO CLIENTE</label>
+                            <input type="text" id="codigo_cliente" class="form-input w-full" v-model="form.codigo_cliente">
+                            <p class="text-sm text-gray-500 mt-1">Ingrese departamento.</p>
+                        </div>
+                        <div class="mb-4">
+                            <label for="departamento" class="block mb-1">CODIGO SEDE</label>
+                            <input type="text" id="codigo_sede" class="form-input w-full" v-model="form.codigo_sede">
                             <p class="text-sm text-gray-500 mt-1">Ingrese departamento.</p>
                         </div>
                         <div class="mb-4">

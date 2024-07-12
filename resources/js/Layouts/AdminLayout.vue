@@ -2,7 +2,8 @@
     <div class="flex flex-col h-screen">
   
       <!-- Aside y Header dentro del contenedor principal -->
-      <Aside></Aside>  
+      <Aside></Aside>
+
       <Header></Header>
   
       <!-- Main ocupa el espacio restante -->

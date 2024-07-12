@@ -98,6 +98,7 @@ const options = [
 ];
 
 let selected = ref('');
+
 onBeforeMount(() => {
   if (  props.clientes && props.locales && props.personas) {
   

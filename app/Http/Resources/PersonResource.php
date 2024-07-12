@@ -20,6 +20,8 @@ class PersonResource extends JsonResource
             'id' => $this->id,
             'dni' => $this->dni,
             'departamento'  => $this->departamento,
+            'codigo_cliente'=> $this->codigo_cliente,
+            'codigo_sede'=> $this->codigo_sede,
             'provincia'  => $this->provincia,
             'estado' => $this->estado,
             'distrito' => $this->distrito,

@@ -445,10 +445,11 @@ const save = () => {
                         <div className="my-2">
                             <h2 className="text-xl font-thin mb-4">{{modalTitleEdit}}</h2>
                         </div>
-                        <div className="mb-4">
-                            <label for="fecha" className="block mb-1">FECHA</label>
-                            <input type="text" id="fecha" className="form-input w-full" v-model="formEdit.fecha">
-                            <p className="text-sm text-gray-500 mt-1">Ingrese fecha.</p>
+                        <div class="mb-4">
+                            <label for="fecha" class="block mb-1">FECHA</label>
+                            <!-- Cambiamos el tipo de input a "date" -->
+                            <input type="date" id="fecha" class="form-input w-full" v-model="formEdit.fecha">
+                            <p class="text-sm text-gray-500 mt-1">Ingrese fecha.</p>
                         </div>
                         <div className="mb-4">
                             <label for="dni" className="block mb-1">DNI</label>
@@ -550,11 +551,12 @@ const save = () => {
                         <div className="my-2">
                             <h2 className="text-xl font-thin mb-4">{{ modalTitle }}</h2>
                         </div>
-                        <div className="mb-4">
-                            <label for="fecha" className="block mb-1">FECHA</label>
-                            <input type="text" id="fecha" className="form-input w-full" v-model="form.fecha">
-                            <p className="text-sm text-gray-500 mt-1">Ingrese fecha.</p>
-                        </div>
+                        <div class="mb-4">
+                                <label for="fecha" class="block mb-1">FECHA</label>
+                                <!-- Cambiamos el tipo de input a "date" -->
+                                <input type="date" id="fecha" class="form-input w-full" v-model="form.fecha">
+                                <p class="text-sm text-gray-500 mt-1">Ingrese fecha.</p>
+                            </div>
                         <div className="mb-4">
                             <label for="dni" className="block mb-1">DNI</label>
                             <input type="text" id="dni" className="form-input w-full" v-model="form.dni">

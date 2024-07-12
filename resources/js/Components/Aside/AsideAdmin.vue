@@ -42,7 +42,7 @@
                            <span class="lg:hidden lg:sidebar-expanded:block 2xl:block">More</span>
                    </h3>
                    <ul class="mt-3">
-                    <div v-if="hasRole('administracion')">
+                    <div v-if="hasRole('admin')">
                         <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 undefined">
                             <a 
                                 class="block text-slate-200 truncate transition duration-150 hover:text-white">
@@ -60,7 +60,7 @@
                                             >
                                                 ADMINISTRACION
                                             </NavLink>
-                                            </template
+                                            
                                             </span>
                                         </div>
                                         <div class="flex shrink-0 ml-2">
@@ -211,7 +211,7 @@
                     </div>
                 </li>
             </div>
-            <div v-if="hasRole('reportes')">    
+            <div v-if="hasRole('soporte')">    
                 <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0 undefined">
                     <a 
                     class="block text-slate-200 truncate transition duration-150 hover:text-white">
@@ -226,7 +226,7 @@
                                                             :href="route('test.index')"
                                                             :active="route().current('test.index')"
                                                         >
-                                                            REPORTES
+                                                            SOPORTE
                                                         </NavLink>
                                 </span>
                             </div>
@@ -276,6 +276,7 @@
 
     import { ref } from 'vue';
     import NavLink from "@/Components/NavLink.vue";
+    import { usePermission } from "@/composables/permissions";
     const { hasRole } = usePermission();
 
 

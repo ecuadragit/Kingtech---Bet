@@ -47,7 +47,7 @@
     const showModalEdit = ref(false); // Variable para controlar la visibilidad del modal
     const modalTitleEdit = ref(''); // Variable para almacenar el título del modal
     const filaSeleccionada = ref(false);
-    //
+    const modalTitleUpload=ref('');
      const selectedDate = ref(new Date());
      const startDate = ref(new Date());
      const endDate = ref(new Date());
@@ -145,7 +145,7 @@
 
             }).then((result) => {
                 if (result.isConfirmed) {
-                    confirmation(plataforma, 'http://localhost:8000/api/v1/delete/' + id, '/listbet');
+                    confirmation(plataforma, 'http://localhost:8000/platforms' + id, '/listbet');
                 }
             });
         } else {
@@ -179,6 +179,8 @@
         }
 
         formEdit.value.plataforma=selectedRowsData.plataforma
+        formEdit.value.codigo_sede=selectedRowsData.codigo_sede
+        formEdit.value.codigo_plataforma=selectedRowsData.codigo_plataforma
     
     
         console.log(plataforma);
@@ -213,9 +215,11 @@
             const selectedRowData = selectedRows[0];
         
             formEdit.value.plataformas=selectedRowData.plataformas
+            formEdit.value.codigo_sede=selectedRowData.codigo_sede
+            formEdit.value.codigo_plataforma=selectedRowData.codigo_plataforma
         
             console.log(formEdit);
-            //  sendRequest('PUT',formEdit.value,('http://localhost:8000/api/v1/client/'+id),'');
+              sendRequest('PUT',formEdit.value,('http://localhost:8000/platforms'+id),'');
 
         } else {
             // Si no se ha seleccionado ninguna fila, mostramos un mensaje de advertencia o manejo de la situación
@@ -226,10 +230,15 @@
     /**************************************************************************************************************** */
     const save = () => 
         {     
+            console.log(form);
+             sendRequest('POST',formEdit.value,('http://localhost:8000/platforms'),'');
+
             form.value.id
             form.value.plataforma
+            form.value.codigo_sede
+            form.value.codigo_plataforma
                 
-            console.log(form);
+            
             showModal.value = false;
         }
     /**************************************************************************************************************** */
@@ -377,6 +386,18 @@
                             <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
                         </div>
                        
+                        <div className="mb-4">
+                            <label for="plataforma" className="block mb-1">CODIGO SEDE</label>
+                            <input type="text" id="plataforma" className="form-input w-full" v-model="formEdit.codigo_sede">
+                            <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
+                        </div>
+                       
+                        <div className="mb-4">
+                            <label for="plataforma" className="block mb-1">CODIGO PLATAFORMA</label>
+                            <input type="text" id="plataforma" className="form-input w-full" v-model="formEdit.codigo_plataforma">
+                            <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
+                        </div>
+                       
                                
 
                         <div class="flex items-center justify-end p-4 border-t">
@@ -415,7 +436,17 @@
                             <input type="text" id="plataforma" className="form-input w-full" v-model="form.plataforma">
                             <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
                         </div>
+                        <div className="mb-4">
+                            <label for="plataforma" className="block mb-1">CODIGO SEDE</label>
+                            <input type="text" id="plataforma" className="form-input w-full" v-model="form.codigo_sede">
+                            <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
+                        </div>
                        
+                        <div className="mb-4">
+                            <label for="plataforma" className="block mb-1">CODIGO PLATAFORMA</label>
+                            <input type="text" id="plataforma" className="form-input w-full" v-model="form.codigo_plataforma">
+                            <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
+                        </div>
                                
 
                         <div class="flex items-center justify-end p-4 border-t">

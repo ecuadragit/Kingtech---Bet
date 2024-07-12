@@ -13,8 +13,10 @@ class Person extends Model
 
     protected $fillable = [
         'id',
-        'fecha',
+        'dni',
         'departamento',
+        'codigo_cliente',
+        'codigo_sede',
         'provincia',
         'distrito',
         'direccion',

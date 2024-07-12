@@ -4,27 +4,27 @@ namespace App\Http\Controllers\Support;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AlertaResource; // Import AlertaResource
-use App\Http\Resources\StoreResource; // Import PersonResource
+use App\Http\Resources\ClienteResource; // Import PersonResource
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-use App\Models\Local;
-use App\Models\Alert;
+use App\Models\Cliente;
+use App\Models\Alerta;
 
 
 class SupportController extends Controller
 {
     public function index()
     {
-    $locales = Local::all();        
-    $localesFormateados = StoreResource::collection($locales);
-    $alertas = Alert::all();        
+    $clientes = Cliente::all();        
+    $clientesFormateados = ClienteResource::collection($clientes);
+    $alertas = Alerta::all();        
     $alertasFormateados = AlertaResource::collection($alertas);
 
     // Retornar una respuesta utilizando Inertia para la renderización en el frontend
-    return Inertia::render('Admin/Suport/Index', [
-        'locales' => $locales,
-        'alertas' => $alertas
+    return Inertia::render('Admin/Modules/Soporte', [
+        'clientes' => $clientesFormateados,
+        'alertas' => $alertasFormateados
     ]);
 
    // Si deseas probar las consultas y devolver JSON, puedes descomentar el siguiente código:
@@ -34,7 +34,7 @@ class SupportController extends Controller
     // $alertasFormateados = AlertaResource::collection($alertas);
    // return response()->json($localesFormateados );
 
-    return response()->json( $alertasFormateados);
+    //return response()->json( $alertasFormateados);
 }
 
        

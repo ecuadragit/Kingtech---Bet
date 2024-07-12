@@ -14,19 +14,19 @@ class VerifyCsrfToken extends Middleware
     //permitir hacer test a travez de estas rutas listadas ...
     
     protected $except = [
-        'platforms/',
-        'clients/',
-        'persons/',
-        'stores/',
-        'transatcion/',
-        'transactiondetail/',
-        'utility/',
-        'locationlocal/',
-        'platformstore/', // Excluye todas las rutas bajo /clients
-        'supadmin/',
-        'atc/',
-        'contabilidad/', // Excluye todas las rutas bajo /clients
-        'soporte/',
+        'platforms/*',
+        'clients/*',
+        'persons/*',
+        'stores/*',
+        'transatcion/*',
+        'transactiondetail/*',
+        'utility/*',
+        'locationlocal/*',
+        'platformstore/*', // Excluye todas las rutas bajo /clients
+        'supadmin/*',
+        'atc/*',
+        'contabilidad/*', // Excluye todas las rutas bajo /clients
+        'soporte/*',
 
         
         

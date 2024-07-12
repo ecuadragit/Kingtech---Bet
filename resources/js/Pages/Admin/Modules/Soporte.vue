@@ -75,7 +75,7 @@
   import { onMounted, onBeforeMount } from 'vue';
   import AdminLayout from '../../../Layouts/AdminLayout.vue'; // Asegúrate de importar correctamente tu componente de layout
   import Clientes from '../../../Pages/Admin/Clients/Index.vue'; // Importa tus componentes correspondientes
-  import Alertas from '../../../Pages/Admin/Alertas/Index.vue'; // Importa tus componentes correspondientes
+  import Alertas from '../../../Pages/Admin/Alerts/Index.vue'; // Importa tus componentes correspondientes
   //
   import NavLinkAdmin from "@/Components/NavLinkAdmin.vue";
   import DropdownLink from "@/Components/DropdownLink.vue";
@@ -111,7 +111,7 @@
   //
   onMounted(() => {
    
-      console.log('Datos recibidos desde Inertia:');
+      console.log('Datos recibidos desde Inertia:' + clientes, alertas );
     
   });
 

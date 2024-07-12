@@ -60,15 +60,15 @@
       </div>
       <!-- Contenedor para los componentes hijos -->
       <div class="relative z-0">
-        <Clientes v-if="selected === '1'" :datos="props.clientes"></Clientes>
-        <Persons v-else-if="selected === '2'" :datos="props.personas"></Persons>
-        <Utilitys v-else-if="selected === '3'" :datos="props.utilidades"></Utilitys>
-        <Platform v-else-if="selected === '4'" :datos="props.platform"></Platform>       
-        <StoreLocation v-if="selected === '5'" :datos="props.locationlocal"></StoreLocation>
-        <Stores v-else-if="selected === '6'" :datos="props.locales"></Stores>
-        <TransacitonDetails v-else-if="selected === '7'" :datos="props.transactiondetail"></TransacitonDetails>
-        <Transactions v-else-if="selected === '8'" :datos="props.transaction"></Transactions>        
-        <Utilitys v-else-if="selected === '9'" :datos="props.utility"></Utilitys>        
+        <Clientes v-if="selected === '1'" :datos="clientes"></Clientes>
+        <Persons v-else-if="selected === '2'" :datos="personas"></Persons>
+        <Platforms v-else-if="selected === '3'" :datos="platform"></Platforms>       
+        <Platformstore v-if="selected === '4'" :datos="platformsede"></Platformstore>
+        <Stores v-else-if="selected === '5'" :datos="locales"></Stores>
+        <StoreLocation v-else-if="selected === '6'" :datos="locationlocal"></StoreLocation>
+        <TransacitonDetails v-else-if="selected === '7'" :datos="transactiondetail"></TransacitonDetails>
+        <Transactions v-else-if="selected === '8'" :datos="transaction"></Transactions>        
+        <Utilitys v-else-if="selected === '9'" :datos="utility"></Utilitys>        
       </div>
     </AdminLayout>
   </template>
@@ -94,15 +94,15 @@
   import Transactions from '../../../Pages/Admin/Transactions/Index.vue';
   import Utilitys from '../../../Pages/Admin/Utilitys/Index.vue';
 
-const    clientes= ref([]);
-const    personas = ref([]);
-const    locales = ref([]);
-const    locationlocal  = ref([]);//Definir la estructura esperada de los datos recibidos
-const    platform = ref([]);
-const    platformsede = ref([]);
-const    transaction = ref([]);
-const    transactiondetail = ref([]); //Definir la estructura esperada de los datos recibidos
-const    utility = ref([]);
+let    clientes= ref([]);
+let    personas = ref([]);
+let    locales = ref([]);
+let    locationlocal  = ref([]);//Definir la estructura esperada de los datos recibidos
+let    platform = ref([]);
+let    platformsede = ref([]);
+let    transaction = ref([]);
+let    transactiondetail = ref([]); //Definir la estructura esperada de los datos recibidos
+let    utility = ref([]);
 
     const props = defineProps({
       clientes:Array,
@@ -115,23 +115,24 @@ const    utility = ref([]);
       transactiondetail: Array,  //Definir la estructura esperada de los datos recibidos
       utility:Array,
     });
+
     const options = [
-      { value: '1', text: 'Tabla Transacciones' },
-      { value: '2', text: 'Tabla Detalle Transacciones' },
-      { value: '3', text: 'Detalle Utilidades' },
-      { value: '4', text: 'Lista Plataformas' },
-      { value: '5', text: 'Tabla Transacciones' },
-      { value: '6', text: 'Tabla Detalle Transacciones' },
-      { value: '7', text: 'Detalle Utilidades' },
-      { value: '8', text: 'Lista Plataformas' },
-      { value: '9', text: 'Lista Plataformas' },
+      { value: '1', text: 'Tabla clientes' },
+      { value: '2', text: 'Tabla De personas' },
+      { value: '3', text: 'Detalle locales' },
+      { value: '4', text: 'Lista locacion local' },
+      { value: '5', text: 'Tabla platformas' },
+      { value: '6', text: 'Tabla Detalle platforma sede' },
+      { value: '7', text: 'Detalle transaction' },
+      { value: '8', text: 'Lista transaction detalle' },
+      { value: '9', text: 'Lista utility' },
     ];
     
     let selected = ref('');
-  
 
     onBeforeMount(() => {
-      if (  props.transacciones && props.transaccionesdetail && props.utilidades && props.plataformas && props.transacciones && props.transaccionesdetail && props.utilidades && props.plataformas) {
+
+      if (  props.clientes && props.personas && props.locales && props.locationlocal && props.platform && props.platformsede && props.transaction && props.transactiondetail&& props.utility) {
 
           clientes= props.clientes;
           personas =props.personas ;
@@ -150,15 +151,15 @@ const    utility = ref([]);
     });
 
     onMounted(() => {
-          console.log('Datos recibidos desde Inertia transacciones:', props.transacciones  );
-          console.log('Datos recibidos desde Inertia transaccionesdetail:',  props.transaccionesdetail  );
-          console.log('Datos recibidos desde Inertia utilidades:',  props.utilidades );
-          console.log('Datos recibidos desde Inertia plataformas:',props.plataformas );
-          console.log('Datos recibidos desde Inertia transacciones:', props.transacciones  );
-          console.log('Datos recibidos desde Inertia transaccionesdetail:',  props.transaccionesdetail  );
-          console.log('Datos recibidos desde Inertia utilidades:',  props.utilidades );
-          console.log('Datos recibidos desde Inertia plataformas:',props.plataformas );
-          console.log('Datos recibidos desde Inertia plataformas:',props.plataformas );
+          console.log('Datos recibidos desde Inertia transacciones:', clientes.value  );
+          console.log('Datos recibidos desde Inertia transaccionesdetail:',  personas  );
+          console.log('Datos recibidos desde Inertia utilidades:',  locales );
+          console.log('Datos recibidos desde Inertia plataformas:',locationlocal );
+          console.log('Datos recibidos desde Inertia transacciones:', platform  );
+          console.log('Datos recibidos desde Inertia transaccionesdetail:',  platformsede  );
+          console.log('Datos recibidos desde Inertia utilidades:', transaction );
+          console.log('Datos recibidos desde Inertia plataformas:',transactiondetail );
+          console.log('Datos recibidos desde Inertia plataformas:',utility );
     });
 
     </script>

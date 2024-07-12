@@ -229,21 +229,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::middleware(RoleMiddleware::class . ':admin')->group(function () {
-        Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    });
+    // Route::middleware(RoleMiddleware::class . ':admin')->group(function () {
+    //     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    // });
 
-    Route::middleware(RoleMiddleware::class . ':atencion')->group(function () {
-        Route::get('/atc', [AtcController::class, 'index'])->name('atc.index');
-    });
+    // Route::middleware(RoleMiddleware::class . ':atencion')->group(function () {
+    //     Route::get('/atc', [AtcController::class, 'index'])->name('atc.index');
+    // });
 
-    Route::middleware(RoleMiddleware::class . ':contabilidad')->group(function () {
-        Route::get('/contabilidad', [ContabilidadController::class, 'index'])->name('contabilidad.index');
-    });
+    // Route::middleware(RoleMiddleware::class . ':contabilidad')->group(function () {
+    //     Route::get('/contabilidad', [ContabilidadController::class, 'index'])->name('contabilidad.index');
+    // });
 
-    Route::middleware(RoleMiddleware::class . ':soporte')->group(function () {
-        Route::get('/soporte', [SoporteController::class, 'index'])->name('soporte.index');
-    });
+    // Route::middleware(RoleMiddleware::class . ':soporte')->group(function () {
+    //     Route::get('/soporte', [SoporteController::class, 'index'])->name('soporte.index');
+    // });
 
 });
 /****************************************************************************************************************/
