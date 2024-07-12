@@ -16,12 +16,12 @@ class UtilityController extends Controller
             'utilidades' => UtilityResource::collection(Utility::all())
         ]);            
         
-       //Obtener todos los clientes
-        $utilidades = Utility::all();        
-        //Formatear los clientes usando ClienteResource
-        $utilidadesFormateados = UtilityResource::collection($utilidades);
-       // Devolver los clientes formateados como una respuesta JSON
-        return response()->json($utilidadesFormateados);
+    //    //Obtener todos los clientes
+    //     $utilidades = Utility::all();        
+    //     //Formatear los clientes usando ClienteResource
+    //     $utilidadesFormateados = UtilityResource::collection($utilidades);
+    //    // Devolver los clientes formateados como una respuesta JSON
+    //     return response()->json($utilidadesFormateados);
      }
 
        

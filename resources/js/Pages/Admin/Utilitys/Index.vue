@@ -75,13 +75,13 @@ onMounted(() => {
 /**************************************************************************************************************** */
     const form = ref({               
         id	:'',
-        cod	:'',
-        sistema	:'',
+        codigo_sede	:'',
+        plataforma_id	:'',
         juego	:'',
         periodo	:'',
         administrador	:'',
         shop	:'',
-        sede	:'',
+        sede_id	:'',
         razon_social:'',	
         ruc	:'',
         utilidad_bruta_100	:'',
@@ -102,13 +102,13 @@ onMounted(() => {
 /**************************************************************************************************************** */
    const formEdit = ref({
         id	:'',
-        cod	:'',
-        sistema	:'',
+        codigo_sede	:'',
+        plataforma_id	:'',
         juego	:'',
         periodo	:'',
         administrador	:'',
         shop	:'',
-        sede	:'',
+        sede_id	:'',
         razon_social:'',	
         ruc	:'',
         utilidad_bruta_100	:'',
@@ -129,14 +129,8 @@ onMounted(() => {
 /**************************************************************************************************************** */
 columns.value = [
   { data: null, render: function(data, type, row, meta) { return meta.row + 1; } },
-  { data: 'codigo_sede' },
-  { data: 'plataforma_id' },
-  { data: 'juego' },
   { data: 'periodo' },
   { data: 'administrador' },
-  { data: 'sede_id' },
-  { data: 'razon_social' },
-  { data: 'ruc' },
   { data: 'utilidad_bruta_100' },
   { data: 'impuesto_12' },
   { data: 'utilidad_impuesto' },
@@ -144,9 +138,7 @@ columns.value = [
   { data: 'utilidad_neta' },
   { data: 'total_a_depositar' },
   { data: 'pago' },
-  { data: 'porcentaje_com_adm' },
-  { data: 'com_adm_s' },
-  { data: 'porcentaje_participacion' },
+
   { data: 'documento_atribucion' }
 ];
 
@@ -407,61 +399,42 @@ filaSeleccionada.value = selectedRows > 0;
     </div>
     <!-- **************************************************************************************************************************************-->         
     <!-- **************************************************************************************************************************************-->         
-    <div className="border px-10 py-5  border-primary-400 rounded-md  mt-3">    
-    <div className="md:col-span-12 lg:col-span-12 col-span-12">
-    <div class="buttons">
-        
-    </div>
-    <div className="border px-10 py-5  border-primary-400 rounded-md shadow   mt-3">    
-            <div className="md:col-span-12 lg:col-span-12 col-span-12">               
-                <div class="overflow-x-auto my-5">
-        <DataTable 
-        :data="datos" 
-        :columns="columns" 
-        ref="table"
-        class="display"
-        :options="{ 
-            select:true,
-            responsive: true, 
-            autoWidth: false, 
-            dom: 'Bfrtip',
-            buttons: buttons,
-            pageLength: 10
-        }"
-            @select="handleRowSelection"
-        >
-            <thead>
-                <tr>
-                    <th className="px-4 py-2" >Id</th>
-
-                    <th className="px-4 py-2" >codigo_sede</th>
-                        <th className="px-4 py-2" >plataforma_id</th>
-                        <th className="px-4 py-2" >juego</th>
-                        <th className="px-4 py-2" >periodo</th>
-                        <th className="px-4 py-2" >administrador</th>
-                        <th className="px-4 py-2" >sede_id</th>
-                        <th className="px-4 py-2" >razon_social</th>
-                        <th className="px-4 py-2" >ruc</th>
-                        <th className="px-4 py-2" >utilidad_bruta_100</th>
-                        <th className="px-4 py-2" >impuesto_12</th>
-                        <th className="px-4 py-2" >utilidad_impuesto</th>
-                        <th className="px-4 py-2" >porcentaje_base</th>
-                        <th className="px-4 py-2" >utilidad_neta</th>
-                        <th className="px-4 py-2" >total_a_depositar</th>
-                        <th className="px-4 py-2" >pago</th>
-                        <th className="px-4 py-2" >porcentaje_com_adm</th>
-                        <th className="px-4 py-2" >com_adm_s</th>
-                        <th className="px-4 py-2" >porcentaje_participacion</th>
-                        <th className="px-4 py-2" >documento_atribucion</th>
+    <div className="flex justify-center my-3">    
+        <div className="md:col-span-6 lg:col-span-6 col-span-6">   
+            <div className="table-responsive my-5">           
+                    <DataTable 
+                    :data="datos" 
+                    :columns="columns" 
+                    ref="table"
+                    class="display"
+                    :options="{ 
+                        select:true,
+                        responsive: true, 
+                        autoWidth: false, 
+                        dom: 'Bfrtip',
+                        buttons: buttons,
+                        pageLength: 10
+                    }"
+                        @select="handleRowSelection"
+                    >
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Periodo</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Administrador</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilidad Bruta 100</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Impuesto 12</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilidad Impuesto</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Porcentaje Base</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Utilidad Neta</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total a Depositar</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pago</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Documento Atribucion</th>
                         </tr>
-               
-            </thead>
-        </DataTable>                                      
-    </div>
+                    </thead>
+                    </DataTable>                                      
+            </div>
          </div>
-      </div>
-    </div>
-
     </div>
     <!-- **************************************************************************************************************************************-->
     <!-- MODAL EDIT  -->
