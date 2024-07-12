@@ -51,9 +51,8 @@
      const selectedDate = ref(new Date());
      const startDate = ref(new Date());
      const endDate = ref(new Date());
-
      const showModalUpload = ref(false);
-
+     
     const openModalUpload = (title) => 
     {      
     modalTitleUpload.value = title;
@@ -64,9 +63,7 @@
 /**************************************************************************************************************** */
     //
     onBeforeMount(() => {
-        console.log(props.value);
         plataformas.value = props.datos;
-        console.log(plataformas);    
     });
     //
     onMounted(() => {    

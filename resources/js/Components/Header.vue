@@ -7,7 +7,8 @@ const mostrarSearch =ref(false);
 const mostrarHelp=ref(false);
 const mostrarProfile=ref(false);
 const darkMode = ref(false);
-
+import { usePermission } from "@/composables/permissions";
+const { hasRole } = usePermission();
 
 const toggleNotificaciones = () => {
     mostrarNotificaciones.value = !mostrarNotificaciones.value;
@@ -167,7 +168,7 @@ const toggleDarkMode = () => {
                         </div>
                     </div>
                 </div> 
-                <div class="relative inline-flex">
+                <div  v-if="hasRole('soporte')" class="relative inline-flex">
                     <button @click="toggleNotificaciones"
                         class="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600/80 rounded-full false"
                         aria-haspopup="true" aria-expanded="false"><span class="sr-only">Notifications</span><svg

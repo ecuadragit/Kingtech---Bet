@@ -40,7 +40,7 @@
     const table=ref();
     const columns =ref([]);
     const buttons = ref([]);
-    const plataformas = ref([]);
+    const platformsede = ref([]);
     const load = ref(false);
     const showModal = ref(false); // Variable para controlar la visibilidad del modal
     const modalTitle = ref(''); 
@@ -64,9 +64,9 @@
 /**************************************************************************************************************** */
     //
     onBeforeMount(() => {
-        console.log(props.value);
-        plataformas.value = props.datos;
-        console.log(plataformas);    
+
+        platformsede.value = props.datos;
+ 
     });
     //
     onMounted(() => {    
@@ -178,7 +178,11 @@
             return;
         }
 
-        formEdit.value.plataforma=selectedRowsData.plataforma
+        formEdit.value.codigo_sede=selectedRowsData.codigo_sede
+
+formEdit.value.codigo_plataforma=selectedRowsData.codigo_plataforma
+
+formEdit.value.codigo_cliente=selectedRowsData.codigo_cliente
     
     
         console.log(plataforma);
@@ -212,8 +216,12 @@
             // Obtenemos los datos de la primera fila seleccionada
             const selectedRowData = selectedRows[0];
         
-            formEdit.value.plataformas=selectedRowData.plataformas
-        
+            formEdit.value.codigo_sede=selectedRowData.codigo_sede
+
+            formEdit.value.codigo_plataforma=selectedRowData.codigo_plataforma
+
+            formEdit.value.codigo_cliente=selectedRowData.codigo_cliente
+
             console.log(formEdit);
             //  sendRequest('PUT',formEdit.value,('http://localhost:8000/api/v1/client/'+id),'');
 
@@ -312,7 +320,7 @@
                
                 <div class="overflow-x-auto my-5">
                     <DataTable 
-                    :data="props.plataformas"
+                    :data="datos"
                     :columns="columns"
                     ref="table"
                     class="display"
@@ -416,17 +424,17 @@
                         </div> 
                         <div className="mb-4">
                             <label for="plataforma" className="block mb-1">PLATAFORMA</label>
-                            <input type="text" id="plataforma" className="form-input w-full" v-model="formEdit.codigo_sede">
+                            <input type="text" id="plataforma" className="form-input w-full" v-model="form.codigo_sede">
                             <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
                         </div>
                         <div className="mb-4">
-                            <label for="plataforma" className="block mb-1">PLATAFORMA</label>
-                            <input type="text" id="plataforma" className="form-input w-full" v-model="formEdit.codigo_plataforma">
+                            <label for="plataforma" className="block mb-1">CODIGO PLATAFORMA</label>
+                            <input type="text" id="plataforma" className="form-input w-full" v-model="form.codigo_plataforma">
                             <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
                         </div>
                         <div className="mb-4">
-                            <label for="plataforma" className="block mb-1">PLATAFORMA</label>
-                            <input type="text" id="plataforma" className="form-input w-full" v-model="formEdit.codigo_cliente">
+                            <label for="plataforma" className="block mb-1">CODIGO CLIENTE</label>
+                            <input type="text" id="plataforma" className="form-input w-full" v-model="form.codigo_cliente">
                             <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la plataforma.</p>
                         </div>
 
@@ -435,7 +443,7 @@
 
                         <div class="flex items-center justify-end p-4 border-t">
                     <button  type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">Aceptar</button>
-                    <button @click="showModalEdit = false" type="button" class="ml-3 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 px-5 py-2.5">Rechazar</button>
+                    <button @click="showModal = false" type="button" class="ml-3 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 px-5 py-2.5">Rechazar</button>
                 </div>
                     </form>
                 </div>

@@ -14,6 +14,7 @@
     import  pdfMake from 'pdfMake/build/pdfmake';
     import * as pdfFonts from 'pdfMake/build/vfs_fonts';
     import Button from '@/Components/Button.vue';
+    import datepicker from 'vue3-datepicker';
 /**********************************************************/
     window.JSZip=JSZip;
     import Select from 'datatables.net-select';
@@ -26,8 +27,8 @@
     const table=ref();
     const columns =ref([]);
     const buttons = ref([]);
-    const tiendaslocacion = ref([]);
-    const load = ref(false);
+    const locationlocal = ref([]);
+    //const load = ref(false);
     const showModal = ref(false); // Variable para controlar la visibilidad del modal
     const modalTitle = ref(''); 
     const showModalEdit = ref(false); // Variable para controlar la visibilidad del modal
@@ -39,7 +40,7 @@
      const endDate = ref(new Date());
 
      const showModalUpload = ref(false);
-
+  const   modalTitleUpload =ref(''); 
     const openModalUpload = (title) => 
     {      
     modalTitleUpload.value = title;
@@ -47,16 +48,17 @@
     console.log('mensjae de exito');            
     };
 /*****************************************************************************************************************/
+onBeforeMount(() => {
+    locationlocal.value = props.datos;
+    //console.log(locationlocal);
+});
+/*****************************************************************************************************************/
     onMounted(() => {
-        load.value = true;
+        //load.value = true;
         table.value.dt.on('deselect', handleRowSelectionDelete);
         table.value.dt.on('deselect', handleRowSelection);
     });
-/*****************************************************************************************************************/
-    onBeforeMount(() => {
-        tiendaslocacion.value = props.datos;
-        console.log(tiendaslocacion);
-    });
+
 /*****************************************************************************************************************/
 /**************************************************************************************************************** */
 
@@ -360,7 +362,7 @@ const save = () => {
             <div className="md:col-span-12 lg:col-span-12 col-span-12">              
                 <div class="overflow-x-auto my-5">
                     <DataTable 
-                    :data="localeslocation" 
+                    :data="datos" 
                     :columns="columns" 
                     ref="table"
                     class="display"
@@ -382,7 +384,6 @@ const save = () => {
                                 <th className="px-4 py-2"> latitud </th>
                                 <th className="px-4 py-2">longitud</th>
                                 <th className="px-4 py-2">administrador</th>
-                                <th className="px-4 py-2">modelo</th>
                                 <th className="px-4 py-2">estado </th>
                                 <th className="px-4 py-2">reporte</th>
                             </tr>
@@ -417,8 +418,13 @@ const save = () => {
                             <h2 className="text-xl font-thin mb-4">{{ modalTitleEdit }}</h2>
                         </div>
                         <div className="mb-4">
-                            <label for="codigo" className="block mb-1">CODIGO</label>
-                            <input type="text" id="codigo" className="form-input w-full" v-model="formEdit.codigo">
+                            <label for="codigo_sede" className="block mb-1">CODIGO SEDE</label>
+                            <input type="text" id="codigo_sede" className="form-input w-full" v-model="formEdit.codigo_sede">
+                            <p className="text-sm text-gray-500 mt-1">Ingrese el nombre del codigo.</p>
+                        </div>
+                        <div className="mb-4">
+                            <label for="nombre_sede" className="block mb-1">NOMBRE SEDE</label>
+                            <input type="text" id="nombre_sede" className="form-input w-full" v-model="formEdit.nombre_sede">
                             <p className="text-sm text-gray-500 mt-1">Ingrese el nombre del codigo.</p>
                         </div>
                         <div className="mb-4">
@@ -495,9 +501,14 @@ const save = () => {
                             <h2 className="text-xl font-thin mb-4">{{ modalTitleEdit }}</h2>
                         </div>
                         <div className="mb-4">
-                            <label for="codigo" className="block mb-1">CODIGO</label>
-                            <input type="text" id="codigo" className="form-input w-full" v-model="formEdit.codigo">
-                            <p className="text-sm text-gray-500 mt-1">Ingrese el nombre del codigo.</p>
+                            <label for="codigo_sede" className="block mb-1">CODIGO SEDE</label>
+                            <input type="text" id="codigo_sede" className="form-input w-full" v-model="form.codigo_sede">
+                            <p className="text-sm text-gray-500 mt-1">Ingrese el  codigo.</p>
+                        </div>
+                        <div className="mb-4">
+                            <label for="nombre_sede" className="block mb-1">NOMBRE SEDE</label>
+                            <input type="text" id="nombre_sede" className="form-input w-full" v-model="form.nombre_sede">
+                            <p className="text-sm text-gray-500 mt-1">Ingrese el nombre de la sede.</p>
                         </div>
                         <div className="mb-4">
                             <label for="grupo" className="block mb-1">GRUPO</label>

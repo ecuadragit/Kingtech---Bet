@@ -45,7 +45,7 @@
     const showModalEdit = ref(false); // Variable para controlar la visibilidad del modal
     const modalTitleEdit = ref(''); // Variable para almacenar el título del modal
     const filaSeleccionada = ref(false);
-
+    const modalTitleUpload=ref(''); 
     const selectedDate = ref(new Date());
      const startDate = ref(new Date());
      const endDate = ref(new Date());
@@ -63,7 +63,6 @@
 /**************************************************************************************************************** */
 onBeforeMount(() => {
     utilidades.value = props.datos;
-    console.log(utilidades);    
     });
 
 onMounted(() => {
@@ -128,16 +127,28 @@ onMounted(() => {
         
     });
 /**************************************************************************************************************** */
-
-    columns.value = [{ data:null,render:function(data,type,row,meta)
-        {return (meta.row+1)}},
-        {data:'sistema'},
-        {data:'juego'},
-        {data:'periodo'},
-        {data:'administrador'},
-        {data:'ruc'},
-        {data:'total_a_depositar'},
-    ];
+columns.value = [
+  { data: null, render: function(data, type, row, meta) { return meta.row + 1; } },
+  { data: 'codigo_sede' },
+  { data: 'plataforma_id' },
+  { data: 'juego' },
+  { data: 'periodo' },
+  { data: 'administrador' },
+  { data: 'sede_id' },
+  { data: 'razon_social' },
+  { data: 'ruc' },
+  { data: 'utilidad_bruta_100' },
+  { data: 'impuesto_12' },
+  { data: 'utilidad_impuesto' },
+  { data: 'porcentaje_base' },
+  { data: 'utilidad_neta' },
+  { data: 'total_a_depositar' },
+  { data: 'pago' },
+  { data: 'porcentaje_com_adm' },
+  { data: 'com_adm_s' },
+  { data: 'porcentaje_participacion' },
+  { data: 'documento_atribucion' }
+];
 
 /**************************************************************************************************************** */
     buttons.value = [
@@ -405,7 +416,7 @@ filaSeleccionada.value = selectedRows > 0;
             <div className="md:col-span-12 lg:col-span-12 col-span-12">               
                 <div class="overflow-x-auto my-5">
         <DataTable 
-        :data="utilidades" 
+        :data="datos" 
         :columns="columns" 
         ref="table"
         class="display"
@@ -420,18 +431,30 @@ filaSeleccionada.value = selectedRows > 0;
             @select="handleRowSelection"
         >
             <thead>
-                <tr> 
-                    
-                    <th className="px-4 py-2">Id</th>
-                    <th className="px-4 py-2">sistema</th>
-                    <th className="px-4 py-2">juego</th>
-                    <th className="px-4 py-2">periodo</th>
-                    <th className="px-4 py-2">administrador</th>
-                    <th className="px-4 py-2">ruc</th>
-                    <th className="px-4 py-2">total_a_depositar</th>
-                
-                    
-                </tr>
+                <tr>
+                    <th className="px-4 py-2" >Id</th>
+
+                    <th className="px-4 py-2" >codigo_sede</th>
+                        <th className="px-4 py-2" >plataforma_id</th>
+                        <th className="px-4 py-2" >juego</th>
+                        <th className="px-4 py-2" >periodo</th>
+                        <th className="px-4 py-2" >administrador</th>
+                        <th className="px-4 py-2" >sede_id</th>
+                        <th className="px-4 py-2" >razon_social</th>
+                        <th className="px-4 py-2" >ruc</th>
+                        <th className="px-4 py-2" >utilidad_bruta_100</th>
+                        <th className="px-4 py-2" >impuesto_12</th>
+                        <th className="px-4 py-2" >utilidad_impuesto</th>
+                        <th className="px-4 py-2" >porcentaje_base</th>
+                        <th className="px-4 py-2" >utilidad_neta</th>
+                        <th className="px-4 py-2" >total_a_depositar</th>
+                        <th className="px-4 py-2" >pago</th>
+                        <th className="px-4 py-2" >porcentaje_com_adm</th>
+                        <th className="px-4 py-2" >com_adm_s</th>
+                        <th className="px-4 py-2" >porcentaje_participacion</th>
+                        <th className="px-4 py-2" >documento_atribucion</th>
+                        </tr>
+               
             </thead>
         </DataTable>                                      
     </div>
@@ -464,13 +487,13 @@ filaSeleccionada.value = selectedRows > 0;
                 <h2 className="text-xl font-thin mb-4">Título fino</h2>
             </div>
             <div className="mb-4">
-                <label for="fecha" className="block mb-1">CODIGO</label>
-                <input type="text" id="fecha" className="form-input w-full" v-model="formEdit.cod">
+                <label for="fecha" className="block mb-1">CODIGO SEDE</label>
+                <input type="text" id="fecha" className="form-input w-full" v-model="formEdit.codigo_sede">
                 <p className="text-sm text-gray-500 mt-1">Ingrese codigo.</p>
             </div>
             <div className="mb-4">
-                <label for="dni" className="block mb-1">SISTEMA</label>
-                <input type="text" id="dni" className="form-input w-full" v-model="formEdit.sistema">
+                <label for="dni" className="block mb-1">PLATAFORMA </label>
+                <input type="text" id="dni" className="form-input w-full" v-model="formEdit.plataforma_id">
                 <p className="text-sm text-gray-500 mt-1">Ingrese sistema.</p>
             </div>
             <div className="mb-4">
@@ -490,7 +513,7 @@ filaSeleccionada.value = selectedRows > 0;
             </div>                       
             <div className="mb-4">
                 <label for="fecha" className="block mb-1">SEDE</label>
-                <input type="text" id="fecha" className="form-input w-full" v-model="formEdit.sede">
+                <input type="text" id="fecha" className="form-input w-full" v-model="formEdit.sede_id">
                 <p className="text-sm text-gray-500 mt-1">Ingrese sede.</p>
             </div>
             <div className="mb-4">
@@ -607,12 +630,12 @@ filaSeleccionada.value = selectedRows > 0;
             </div>
             <div className="mb-4">
                 <label for="fecha" className="block mb-1">CODIGO</label>
-                <input type="text" id="fecha" className="form-input w-full" v-model="form.cod">
+                <input type="text" id="fecha" className="form-input w-full" v-model="form.codigo_sede">
                 <p className="text-sm text-gray-500 mt-1">Ingrese codigo.</p>
             </div>
             <div className="mb-4">
                 <label for="dni" className="block mb-1">SISTEMA</label>
-                <input type="text" id="dni" className="form-input w-full" v-model="form.sistema">
+                <input type="text" id="dni" className="form-input w-full" v-model="form.plataforma_id">
                 <p className="text-sm text-gray-500 mt-1">Ingrese sistema.</p>
             </div>
             <div className="mb-4">
@@ -632,7 +655,7 @@ filaSeleccionada.value = selectedRows > 0;
             </div>                       
             <div className="mb-4">
                 <label for="fecha" className="block mb-1">SEDE</label>
-                <input type="text" id="fecha" className="form-input w-full" v-model="form.sede">
+                <input type="text" id="fecha" className="form-input w-full" v-model="form.sede_id">
                 <p className="text-sm text-gray-500 mt-1">Ingrese sede.</p>
             </div>
             <div className="mb-4">

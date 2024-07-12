@@ -44,7 +44,7 @@ class KingController extends Controller
             $clientes = Cliente::all();
             $personas = Person::all();
             $locales = Local::all();
-            $locationlocal= Locationlocal::all();
+            $locationlocal = Locationlocal::all();
             $platforms= Platform::all();
             $platformsede= Platformsede::all();
             $transacciones = Transaction::all();
@@ -52,17 +52,17 @@ class KingController extends Controller
             $utility= Utility::all();
 
           //  Agrupar todos los datos en un array asociativo
-            $datos = [
-            'clientes' => $clientes,
-            'personas' => $personas,
-            'locales' => $locales,
-            'locationlocal' => $locationlocal,
-            'platforms' => $platforms,
-            'platformsedes' => $platformsede,
-            'transacciones' => $transacciones,
-            'detallesTransaccion' => $transactiondetail,
-            'utilities' => $utility,
-            ];
+            // $datos = [
+            // 'clientes' => $clientes,
+            // 'personas' => $personas,
+            // 'locales' => $locales,
+            // 'locationlocal' => $locationlocal,
+            // 'platforms' => $platforms,
+            // 'platformsedes' => $platformsede,
+            // 'transacciones' => $transacciones,
+            // 'detallesTransaccion' => $transactiondetail,
+            // 'utilities' => $utility,
+            // ];
 
 // Devolver los datos como respuesta JSON
 //return response()->json($datos);
@@ -77,7 +77,7 @@ class KingController extends Controller
             'platformsede' => PlatformsedeResource::collection($platformsede),
             'transaction' => TransactionResource::collection($transacciones),
             'transactiondetail' => TransactiondetailResource::collection($transactiondetail),
-            'utility' => PersonResource::collection($utility)
+            'utility' => UtilityResource::collection($utility)
         ]);                  
      }
 }

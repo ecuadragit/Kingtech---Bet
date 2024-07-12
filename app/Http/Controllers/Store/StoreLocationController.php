@@ -22,10 +22,12 @@ class StoreLocationController extends Controller
         // Formatear las plataformas utilizando PlatformResource
         $tiendaslocacionFormateadas = LocallocationResource::collection($tiendaslocacion);
     
-        // Agregar el array adicional al arreglo de datos que se pasará a la plantilla Inertia
+      //  Agregar el array adicional al arreglo de datos que se pasará a la plantilla Inertia
         return Inertia::render('Admin/StoreLocation/Index', [
             'tiendaslocacion' => $tiendaslocacionFormateadas
         ]);
+
+        //return response()->json($tiendaslocacionFormateadas);
     }
     
     public function store(Request $request)

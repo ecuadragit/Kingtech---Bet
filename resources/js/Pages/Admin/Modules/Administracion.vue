@@ -62,10 +62,10 @@
       <div class="relative z-0">
         <Clientes v-if="selected === '1'" :datos="clientes"></Clientes>
         <Persons v-else-if="selected === '2'" :datos="personas"></Persons>
-        <Platforms v-else-if="selected === '3'" :datos="platform"></Platforms>       
-        <Platformstore v-if="selected === '4'" :datos="platformsede"></Platformstore>
-        <Stores v-else-if="selected === '5'" :datos="locales"></Stores>
-        <StoreLocation v-else-if="selected === '6'" :datos="locationlocal"></StoreLocation>
+        <Stores v-else-if="selected === '3'" :datos="locales"></Stores>
+        <StoreLocation v-else-if="selected === '4'" :datos="locationlocal"></StoreLocation>
+        <Platforms v-else-if="selected === '5'" :datos="platform"></Platforms> 
+        <Platformstore v-if="selected === '6'" :datos="platformsede"></Platformstore>
         <TransacitonDetails v-else-if="selected === '7'" :datos="transactiondetail"></TransacitonDetails>
         <Transactions v-else-if="selected === '8'" :datos="transaction"></Transactions>        
         <Utilitys v-else-if="selected === '9'" :datos="utility"></Utilitys>        
@@ -151,15 +151,15 @@ let    utility = ref([]);
     });
 
     onMounted(() => {
-          console.log('Datos recibidos desde Inertia transacciones:', clientes.value  );
-          console.log('Datos recibidos desde Inertia transaccionesdetail:',  personas  );
-          console.log('Datos recibidos desde Inertia utilidades:',  locales );
-          console.log('Datos recibidos desde Inertia plataformas:',locationlocal );
-          console.log('Datos recibidos desde Inertia transacciones:', platform  );
-          console.log('Datos recibidos desde Inertia transaccionesdetail:',  platformsede  );
-          console.log('Datos recibidos desde Inertia utilidades:', transaction );
-          console.log('Datos recibidos desde Inertia plataformas:',transactiondetail );
-          console.log('Datos recibidos desde Inertia plataformas:',utility );
+          console.log('Datos recibidos desde Inertia clientes:', clientes );
+          console.log('Datos recibidos desde Inertia personas:',  personas  );
+          console.log('Datos recibidos desde Inertia locales:',  locales );
+          console.log('Datos recibidos desde Inertia locationlocal:',locationlocal );
+          console.log('Datos recibidos desde Inertia platform:', platform  );
+          console.log('Datos recibidos desde Inertia platformsede:',  platformsede  );
+          console.log('Datos recibidos desde Inertia transaction:', transaction );
+          console.log('Datos recibidos desde Inertia transactiondetail:',transactiondetail );
+          console.log('Datos recibidos desde Inertia utility:',utility );
     });
 
     </script>
